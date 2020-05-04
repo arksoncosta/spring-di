@@ -1,14 +1,19 @@
 package guru.springframework.springdi.controllers;
 
+import guru.springframework.springdi.services.GreetingService;
 import org.springframework.stereotype.Controller;
 
 @Controller
 public class MyController {
 
-    public String sayHello() {
-        System.out.println("Spring Controller");
+    private final GreetingService greetingService;
 
-        return "Say, Hello!";
+    public MyController(GreetingService greetingService) {
+        this.greetingService = greetingService;
+    }
+
+    public String sayHello() {
+        return greetingService.sayGreeting();
     }
 
 }
